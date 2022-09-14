@@ -1,0 +1,22 @@
+header{
+    background-color: #1a1a1a;
+    color:#FFF;
+    height: 28vh;
+}
+.container-title{
+    text-align: center;
+    padding-top:4vh;
+}
+nav{
+    display: flex;
+    text-align: start;
+    margin-top: 2vh ;
+}
+nav ul{
+    display: inline-flex;
+}
+nav ul li{
+    padding: 2vh;
+    list-style: none;
+    margin-left: 2vw;
+}

@@ -1,25 +1,46 @@
-import logo from './logo.svg';
 import './App.css';
+import React, {Component} from 'react';
+import api from './services/api';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component{
+  state={
+    postagens:[],
+  }
+
+  async componentDidMount(){
+    const resposta = await api.get('');
+   // console.log(resposta.data.thumbImage);
+    this.setState({postagens:resposta.data});
+
+  }
+
+  render(){
+    const {postagens} = this.state;
+
+    return(
+      <main>
+        <div class="title" >
+        <h2 >Notícias</h2>
+      </div>
+     {console.log(postagens)}
+        {postagens.map(postagem=>(
+          <div class="container">
+            <div class="container-post">
+            <h2>{postagem.title}</h2>
+            <img src={`https://api-fake-blog.herokuapp.com${postagem.thumbImage}`} class="imagem"/>
+            <div class="container-info">
+            <img src={`https://api-fake-blog.herokuapp.com${postagem.profileThumbImage}`} />
+              <p>{postagem.profileName}</p>
+            </div>
+            <button class="button" >
+              Ver mais
+            </button>
+            </div>
+          </div>
+          ))}
+      </main>
+    )
+  }
 }
 
 export default App;
